@@ -1,0 +1,1 @@
+int exponent(int p, int q, int r);
