@@ -89,10 +89,6 @@ def attention(query, key, value, mask=None, dropout=None):
     
     """
     
-    ### YOUR CODE GOES HERE ########
-    ################################
-    ################################
-    
     # # Compute scores
     scores = (torch.matmul(query, key.transpose(-2, -1)) / torch.sqrt(torch.tensor(key.shape[-1], dtype=torch.float)))  # (N, Lq, d_k) * (N, d_k, Lk) -> (N, Lq, Lk)
     
@@ -143,14 +139,6 @@ class MultiHeadedAttention(nn.Module):
             attn_out: Output, same size as value
 
         """
-        
-        # Make sure to apply a final linear transformation to the output (HINT: self.linears)
-        # as defined in the transformers paper (https://arxiv.org/pdf/1706.03762.pdf)
-        # Make sure to use the 'mask'
-        
-        ### YOUR CODE GOES HERE ########
-        ################################
-        ################################
         
         # Linear projection
         batch_size = query.size(0)

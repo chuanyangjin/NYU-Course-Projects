@@ -144,22 +144,8 @@ def beam_search_decode(model, src, src_mask, max_len, start_symbol, beam_size, e
         # For sequences which have finished, set log_prob to zero
         prob[ys[:,-1] == end_idx,:] = 0
         
-        
-        # Your main task is
-        
-        # 1. Combine the log_prob of next token with our scores so far.
-        #
-        # 2. Use these scores to construct variable ys, which is the best beam_size number of sequences so far.
-        #
-        # IMP HINT: Once a sequence has finished, all the next tokens should also be end_idx.
-        #
-        # Set value of variable:
-        #     ys: torch.tensor of shape (beam_size, current length of sequence) where current length will be i + 2.
-        
-        
-        ### YOUR CODE GOES HERE ########
-        ################################
-        ################################
+
+
         
         # Combine the log_prob of next token with our scores so far
         log_prob = torch.nn.functional.softmax(prob, dim = -1)       # (beam_size, vocab_size)
@@ -174,7 +160,7 @@ def beam_search_decode(model, src, src_mask, max_len, start_symbol, beam_size, e
         # Construct variable ys
         ys = torch.cat([ys[ys_indices], token_indices.unsqueeze(-1)], dim = -1)               # (beam_size, i+2)
         
-        ### YOUR CODE ENDS HERE #######
+
         
         # If all beams are finished, exit
         if (ys[:, -1]==end_idx).sum() == beam_size:

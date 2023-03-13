@@ -18,19 +18,16 @@ def extract_unigram_features(ex):
     Example:
         "I love it", "I hate it" --> {"I":2, "it":2, "hate":1, "love":1}
     """
-    # BEGIN_YOUR_CODE
     dict = {}
     for sentence in [ex["sentence1"], ex["sentence2"]]:
         for word in sentence:
             dict[word] = dict.get(word, 0) + 1
     return dict
-    # END_YOUR_CODE
+
 
 def extract_custom_features(ex):
     """Design your own features.
     """
-    # BEGIN_YOUR_CODE
-    # Best result: train error=0.1244, valid error=0.2446
     dict = {}
     for word in ex["sentence2"]:
         if word not in ex["sentence1"]:
@@ -38,7 +35,7 @@ def extract_custom_features(ex):
     for word in ex["sentence1"] + ex["sentence2"]:
         dict[word] = dict.get(word, 0) - 1          # other words
     return dict
-    # END_YOUR_CODE
+
 
 def learn_predictor(train_data, valid_data, feature_extractor, learning_rate, num_epochs):
     """Running SGD on training examples using the logistic loss.
@@ -56,7 +53,6 @@ def learn_predictor(train_data, valid_data, feature_extractor, learning_rate, nu
         weights : dict
             feature name (str) : weight (float)
     """
-    # BEGIN_YOUR_CODE
     weights = {}
     for i in range(num_epochs):
         for ex in train_data:
@@ -68,7 +64,7 @@ def learn_predictor(train_data, valid_data, feature_extractor, learning_rate, nu
                 weights[word] = weights.get(word, 0) + learning_rate * error * x[word]
 
     return weights
-    # END_YOUR_CODE
+
 
 def count_cooccur_matrix(tokens, window_size=4):
     """Compute the co-occurrence matrix given a sequence of tokens.
@@ -84,7 +80,6 @@ def count_cooccur_matrix(tokens, window_size=4):
         co_mat : np.array
             co_mat[i][j] should contain the co-occurrence counts of the words indexed by i and j according to the dictionary word2ind.
     """
-    # BEGIN_YOUR_CODE
     word2ind = {}
     for token in tokens:
         if token not in word2ind.keys():
@@ -98,7 +93,7 @@ def count_cooccur_matrix(tokens, window_size=4):
                 co_mat[word2ind[tokens[i]]][word2ind[tokens[j]]] += 1
 
     return word2ind, co_mat
-    # END_YOUR_CODE
+
 
 def cooccur_to_embedding(co_mat, embed_size=50):
     """Convert the co-occurrence matrix to word embedding using truncated SVD. Use the np.linalg.svd function.
@@ -110,12 +105,11 @@ def cooccur_to_embedding(co_mat, embed_size=50):
         embeddings : np.array
             vocab_size x embed_size
     """
-    # BEGIN_YOUR_CODE
     U, S, VH = np.linalg.svd(co_mat, hermitian=True)
     for i in range(min(embed_size, len(S))):
         U[:, i] *= S[i]
     return U[:, :embed_size]
-    # END_YOUR_CODE
+
 
 def top_k_similar(word_ind, embeddings, word2ind, k=10, metric='dot'):
     """Return the top k most similar words to the given word (excluding itself).
@@ -134,7 +128,6 @@ def top_k_similar(word_ind, embeddings, word2ind, k=10, metric='dot'):
     Returns:
         topk-words : [str]
     """
-    # BEGIN_YOUR_CODE
     word_embedding = embeddings[word_ind]
     similarities = []
     for embedding in embeddings:
@@ -150,4 +143,3 @@ def top_k_similar(word_ind, embeddings, word2ind, k=10, metric='dot'):
                 topk_words.append(word)
     topk_words = topk_words[:k]
     return topk_words
-    # END_YOUR_CODE

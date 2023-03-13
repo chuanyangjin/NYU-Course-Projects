@@ -1,4 +1,4 @@
-from submission import extract_unigram_features, extract_custom_features, learn_predictor
+from model import extract_unigram_features, extract_custom_features, learn_predictor
 from util import *
 
 def test_unigram():

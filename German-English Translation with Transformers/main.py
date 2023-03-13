@@ -145,7 +145,6 @@ def run_epoch(
 
     
     
-    
 class SimpleLossCompute:
     "A simple loss compute and train function."
 

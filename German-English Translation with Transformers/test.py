@@ -111,43 +111,6 @@ def test_beam_search():
     
     assert match, print("Beam search output with beam_size 1 should match greedy decoding")
     print("=" * 10 + "   Beam Search Unit Test 1 Passed   " + "="*10)   
-    
-
-def my_test_beam_search():
-    
-    from main import eval_model, load_tokenizers, load_vocab, create_dataloaders, create_model
-    
-    #global vocab_src, vocab_tgt, spacy_de, spacy_en
-    spacy_de, spacy_en = load_tokenizers()
-    vocab_src, vocab_tgt = load_vocab(spacy_de, spacy_en)
-    
-    print("Preparing Data ...")
-    _, valid_dataloader = create_dataloaders(
-        0,
-        vocab_src,
-        vocab_tgt,
-        spacy_de,
-        spacy_en,
-        batch_size=1,
-    )
-    
-    #valid_dataloader = valid_dataloader[:5]
-
-    model = create_model(len(vocab_src), len(vocab_tgt), N=6)
-    model.load_state_dict(
-        torch.load("multi30k_model_final.pt", map_location=torch.device("cpu"))
-    )
-    model.cuda(0)
-    model.eval()
-
-    
-    for i in range(1, 6):
-        results_beam, score = eval_model(
-            valid_dataloader, model, vocab_src, vocab_tgt, beam_search=True, beam_size=i, verbose=False, max_iter=5
-        )
-
-        print(score)
-    
 
 
 if __name__ == "__main__":
@@ -178,5 +141,3 @@ if __name__ == "__main__":
         
     if args.beam_search:
         test_beam_search()
-    
-my_test_beam_search()
