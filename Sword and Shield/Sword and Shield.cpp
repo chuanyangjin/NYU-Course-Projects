@@ -1,6 +1,5 @@
 /*
 	Sword and Shield -- A Little Game
-	Homework of Object Oriented Programming Course
 	Chuanyang Jin
 */
 #include "Noble.h"
