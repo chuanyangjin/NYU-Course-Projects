@@ -89,7 +89,7 @@ def attention(query, key, value, mask=None, dropout=None):
     
     """
     
-    # # Compute scores
+    # Compute scores
     scores = (torch.matmul(query, key.transpose(-2, -1)) / torch.sqrt(torch.tensor(key.shape[-1], dtype=torch.float)))  # (N, Lq, d_k) * (N, d_k, Lk) -> (N, Lq, Lk)
     
     # Apply mask

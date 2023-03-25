@@ -21,7 +21,6 @@ exponent:
 	movq	%rsp, %rbp   # LEAVE THIS ALONE
 
 	mov		$1, %eax	 # use the 32-bit register %eax to hold x^n, initially 1
-	                     # 
 	
     mov		$1, %ebx   # use a 32-bit register to hold y^n, initially 1
 	mov		$0, %r9d   # use a 32-bit register to hold i, initially 0

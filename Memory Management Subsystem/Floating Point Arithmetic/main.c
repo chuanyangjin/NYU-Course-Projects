@@ -5,18 +5,14 @@
 int main()
 {
 
-  /* SECTION 1
-     Uncomment the code below in this section once you have written print_bits.
-  */
+  /* Test 1: print_bits */
 
   int x;
   printf("Enter an integer >");
   scanf("%d", &x);
   print_bits(x);
 
-  /* SECTION 2
-     Uncomment the code below in this section once you have written int_multiply.
-  */
+  /* Test 2: int_multiply */
 
   int y, z;
   printf("Enter two integers (to multiply) > ");
@@ -25,9 +21,7 @@ int main()
   printf("%d * %d = %ld\n", y, z, int_multiply(y,z));
   printf("Checking, result should be %ld\n", ((long) y) * ((long) z));
 
-  /* SECTION 3
-     Uncomment the code below in this section once you have written float_multiply.
-  */
+  /* Test 3: float_multiply. */
 
   float a, b;
   printf("Enter two floating point numbers(to multiply) > ");
@@ -36,9 +30,7 @@ int main()
   printf("%f * %f = %f\n", a, b, float_multiply(a,b));
   printf("Checking, result should be %f\n", a*b);
 
-  /* SECTION 4
-     Uncomment the code below in this section once you have written float_multiply.
-  */
+  /* Test 4: float_multiply. */
 
   #include "exponent.h"
 
