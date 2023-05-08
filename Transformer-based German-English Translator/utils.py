@@ -64,10 +64,6 @@ class PositionalEncoding(nn.Module):
             pe: torch.tensor of size (max_len, d_model)
             
         """
-        
-        ### YOUR CODE GOES HERE ########
-        ################################
-        ################################
 
         pe = torch.zeros(max_len, d_model)
         position = torch.arange(0, max_len, dtype=torch.float).unsqueeze(1)
@@ -75,7 +71,7 @@ class PositionalEncoding(nn.Module):
         pe[:, 0::2] = torch.sin(position / div_term)
         pe[:, 1::2] = torch.cos(position / div_term)
         
-        # Do not modify this.
+ 
         self.register_buffer("pe", pe)
 
     def forward(self, x):
